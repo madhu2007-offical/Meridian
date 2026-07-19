@@ -47,6 +47,7 @@ exports.signup = async (req, res) => {
       otpExpiry: getOtpExpiry(),
     });
 
+    let emailSent = true;
     try {
       await sendEmail(
         user.email,
@@ -54,12 +55,15 @@ exports.signup = async (req, res) => {
         `<h2>Welcome to Post Composer!</h2><p>Your verification code is: <strong>${otp}</strong></p><p>This code expires in 10 minutes.</p>`
       );
     } catch (emailErr) {
-      await User.findByIdAndDelete(user._id);
-      return res.status(500).json({ message: 'Failed to send verification email. Check SMTP config.' });
+      emailSent = false;
+      console.warn('SMTP email sending failed. Falling back to console logging.');
+      console.log(`\n==========================================\n[DEVELOPMENT OTP for ${user.email}]: ${otp}\n==========================================\n`);
     }
 
     res.status(201).json({
-      message: 'Account created. Please verify your email with the OTP sent.',
+      message: emailSent
+        ? 'Account created. Please verify your email with the OTP sent.'
+        : 'Account created. (Verification email failed to send, but since you are in development, you can find the OTP in the backend server log!)',
       email: user.email,
     });
   } catch (error) {
@@ -126,13 +130,24 @@ exports.resendOtp = async (req, res) => {
     user.otpExpiry = getOtpExpiry();
     await user.save();
 
-    await sendEmail(
-      user.email,
-      'Your new Post Composer verification code',
-      `<h2>Verification Code</h2><p>Your new code is: <strong>${otp}</strong></p><p>This code expires in 10 minutes.</p>`
-    );
+    let emailSent = true;
+    try {
+      await sendEmail(
+        user.email,
+        'Your new Post Composer verification code',
+        `<h2>Verification Code</h2><p>Your new code is: <strong>${otp}</strong></p><p>This code expires in 10 minutes.</p>`
+      );
+    } catch (emailErr) {
+      emailSent = false;
+      console.warn('SMTP email sending failed during resend. Falling back to console logging.');
+      console.log(`\n==========================================\n[DEVELOPMENT RESEND OTP for ${user.email}]: ${otp}\n==========================================\n`);
+    }
 
-    res.json({ message: 'If the email exists, a new OTP has been sent' });
+    res.json({
+      message: emailSent
+        ? 'If the email exists, a new OTP has been sent'
+        : 'New OTP generated. (Verification email failed to send, but since you are in development, you can find the new OTP in the backend server log!)',
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
