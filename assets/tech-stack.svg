@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 110" width="700" height="110">
+  <style>
+    .label {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 11px;
+      fill: #1A1A17;
+      text-anchor: middle;
+      font-weight: 500;
+    }
+    .outer-circle {
+      fill: none;
+      stroke: #E5E2DA;
+      stroke-width: 1;
+    }
+  </style>
+
+  <!-- 1. React -->
+  <g transform="translate(0, 0)">
+    <circle cx="50" cy="40" r="35" class="outer-circle"/>
+    <!-- React Atom Icon -->
+    <g stroke="#53C1DE" stroke-width="1.5" fill="none">
+      <ellipse cx="50" cy="40" rx="7" ry="20" transform="rotate(30 50 40)"/>
+      <ellipse cx="50" cy="40" rx="7" ry="20" transform="rotate(90 50 40)"/>
+      <ellipse cx="50" cy="40" rx="7" ry="20" transform="rotate(150 50 40)"/>
+      <circle cx="50" cy="40" r="2" fill="#53C1DE"/>
+    </g>
+    <text x="50" y="94" class="label">React</text>
+  </g>
+
+  <!-- 2. Node.js -->
+  <g transform="translate(100, 0)">
+    <circle cx="50" cy="40" r="35" class="outer-circle"/>
+    <!-- Node Hexagon -->
+    <polygon points="50,18 68,28 68,50 50,60 32,50 32,28" fill="none" stroke="#43853D" stroke-width="1.5"/>
+    <text x="50" y="44" font-family="'Georgia', serif" font-style="italic" font-size="14" fill="#43853D" font-weight="bold" text-anchor="middle">N</text>
+    <text x="50" y="94" class="label">Node.js</text>
+  </g>
+
+  <!-- 3. Express -->
+  <g transform="translate(200, 0)">
+    <circle cx="50" cy="40" r="35" class="outer-circle"/>
+    <text x="50" y="46" font-family="'Source Serif 4', 'Georgia', serif" font-style="italic" font-size="20" font-weight="bold" fill="#1A1A17" text-anchor="middle">Ex</text>
+    <text x="50" y="94" class="label">Express</text>
+  </g>
+
+  <!-- 4. MongoDB -->
+  <g transform="translate(300, 0)">
+    <circle cx="50" cy="40" r="35" class="outer-circle"/>
+    <!-- Leaf Icon -->
+    <path d="M50,18 C42,28 42,48 50,60 C58,48 58,28 50,18 Z" fill="none" stroke="#47A248" stroke-width="1.5"/>
+    <path d="M50,18 C47,28 47,48 50,60" fill="none" stroke="#47A248" stroke-width="1"/>
+    <text x="50" y="94" class="label">MongoDB</text>
+  </g>
+
+  <!-- 5. JWT -->
+  <g transform="translate(400, 0)">
+    <circle cx="50" cy="40" r="35" class="outer-circle"/>
+    <!-- Lock Icon -->
+    <rect x="39" y="35" width="22" height="16" rx="3" fill="none" stroke="#D97757" stroke-width="1.5"/>
+    <path d="M44,35 V30 C44,26.7 46.7,24 50,24 C53.3,24 56,26.7 56,30 V35" fill="none" stroke="#D97757" stroke-width="1.5"/>
+    <circle cx="50" cy="43" r="1.5" fill="#D97757"/>
+    <text x="50" y="94" class="label">JWT</text>
+  </g>
+
+  <!-- 6. Framer Motion -->
+  <g transform="translate(500, 0)">
+    <circle cx="50" cy="40" r="35" class="outer-circle"/>
+    <!-- Framer F Shape -->
+    <path d="M38,24 H62 L50,36 Z M38,36 H62 L50,48 Z M38,48 H50 V60 Z" fill="#8A8F87"/>
+    <text x="50" y="94" class="label">Framer Motion</text>
+  </g>
+
+  <!-- 7. Vite -->
+  <g transform="translate(600, 0)">
+    <circle cx="50" cy="40" r="35" class="outer-circle"/>
+    <!-- Vite Icon -->
+    <polygon points="50,22 68,36 50,60 32,36" fill="none" stroke="#646CFF" stroke-width="1.5"/>
+    <polygon points="50,28 45,38 52,38 48,50 56,36 49,36" fill="#FFD600"/>
+    <text x="50" y="94" class="label">Vite</text>
+  </g>
+</svg>
