@@ -51,8 +51,8 @@ exports.signup = async (req, res) => {
     try {
       await sendEmail(
         user.email,
-        'Verify your Post Composer account',
-        `<h2>Welcome to Post Composer!</h2><p>Your verification code is: <strong>${otp}</strong></p><p>This code expires in 10 minutes.</p>`
+        'Verify your Meridian account',
+        `<h2>Welcome to Meridian!</h2><p>Your verification code is: <strong>${otp}</strong></p><p>This code expires in 10 minutes.</p>`
       );
     } catch (emailErr) {
       emailSent = false;
@@ -134,7 +134,7 @@ exports.resendOtp = async (req, res) => {
     try {
       await sendEmail(
         user.email,
-        'Your new Post Composer verification code',
+        'Your new Meridian verification code',
         `<h2>Verification Code</h2><p>Your new code is: <strong>${otp}</strong></p><p>This code expires in 10 minutes.</p>`
       );
     } catch (emailErr) {
@@ -199,7 +199,7 @@ exports.forgotPassword = async (req, res) => {
       try {
         await sendEmail(
           user.email,
-          'Reset your Post Composer password',
+          'Reset your Meridian password',
           `<h2>Password Reset</h2><p>Click the link below to reset your password (valid for 30 minutes):</p><a href="${resetUrl}">${resetUrl}</a>`
         );
       } catch {

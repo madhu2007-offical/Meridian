@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 
 const sendEmail = async (to, subject, html) => {
   await transporter.sendMail({
-    from: `"Post Composer" <${process.env.GMAIL_USER}>`,
+    from: `"Meridian" <${process.env.GMAIL_USER}>`,
     to,
     subject,
     html,

@@ -21,7 +21,11 @@ const Login = () => {
       const res = await api.post('/auth/login', form);
       login(res.data.token, res.data.user);
       showToast('Welcome back!', 'success');
-      navigate('/feed');
+      if (res.data.user.role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/feed');
+      }
     } catch (err) {
       setShake(true);
       setTimeout(() => setShake(false), 500);

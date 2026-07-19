@@ -16,6 +16,7 @@ const VerifyOtp = () => {
   const [loading, setLoading] = useState(false);
   const [countdown, setCountdown] = useState(600); // 10 minutes (600s)
   const [verified, setVerified] = useState(false);
+  const [shake, setShake] = useState(false);
 
   useEffect(() => {
     if (countdown <= 0) return;
@@ -59,7 +60,7 @@ const VerifyOtp = () => {
   };
 
   const handleVerify = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     const otpCode = otpDigits.join('');
     if (otpCode.length !== 6) {
       showToast('Please enter the 6-digit OTP code', 'error');
@@ -73,14 +74,29 @@ const VerifyOtp = () => {
       setVerified(true);
       setTimeout(() => {
         showToast('Email verified!', 'success');
-        navigate('/feed');
+        if (res.data.user.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/feed');
+        }
       }, 2000);
     } catch (err) {
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+      setOtpDigits(['', '', '', '', '', '']);
+      document.getElementById('otp-digit-0')?.focus();
       showToast(err.response?.data?.message || 'Verification failed', 'error');
     } finally {
       setLoading(false);
     }
   };
+
+  // Auto-submit when all 6 filled
+  useEffect(() => {
+    if (otpDigits.join('').length === 6) {
+      handleVerify();
+    }
+  }, [otpDigits]);
 
   const handleResend = async () => {
     if (countdown > 0) return;
@@ -131,7 +147,12 @@ const VerifyOtp = () => {
 
                   <div className="form-group">
                     <label>OTP Code</label>
-                    <div className="otp-digits-container" onPaste={handlePaste}>
+                    <motion.div
+                      className="otp-digits-container"
+                      onPaste={handlePaste}
+                      animate={shake ? { x: [0, -10, 10, -10, 10, 0] } : {}}
+                      transition={{ duration: 0.4 }}
+                    >
                       {otpDigits.map((digit, idx) => (
                         <input
                           key={idx}
@@ -147,7 +168,7 @@ const VerifyOtp = () => {
                           autoComplete="off"
                         />
                       ))}
-                    </div>
+                    </motion.div>
                   </div>
 
                   <button type="submit" className="btn btn-primary btn-full" disabled={loading}>

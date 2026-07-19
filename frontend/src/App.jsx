@@ -11,6 +11,7 @@ import ResetPassword from './pages/ResetPassword';
 import Composer from './pages/Composer';
 import Feed from './pages/Feed';
 import Admin from './pages/Admin';
+import Landing from './pages/Landing';
 
 const App = () => {
   return (
@@ -20,7 +21,7 @@ const App = () => {
         <Toast />
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Navigate to="/feed" replace />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/verify-otp" element={<VerifyOtp />} />
             <Route path="/login" element={<Login />} />

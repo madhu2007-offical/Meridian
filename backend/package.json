@@ -1,7 +1,7 @@
 {
   "name": "post-composer-backend",
   "version": "1.0.0",
-  "description": "Multi-Platform Post Composer API",
+  "description": "Meridian Multi-Platform Publisher API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
