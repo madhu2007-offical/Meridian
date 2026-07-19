@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <!-- Logo Mark -->
+  <g transform="translate(10, 10)">
+    <!-- Outer Circle -->
+    <circle cx="30" cy="30" r="28" fill="none" stroke="#1A1A17" stroke-width="2"/>
+    <!-- Horizontal Center Line -->
+    <line x1="2" y1="30" x2="58" y2="30" stroke="#8A8F87" stroke-width="1"/>
+    <!-- Vertical Center Line -->
+    <line x1="30" y1="2" x2="30" y2="58" stroke="#8A8F87" stroke-width="1"/>
+    <!-- Inner Ellipse 1 -->
+    <ellipse cx="30" cy="30" rx="10" ry="28" fill="none" stroke="#D97757" stroke-width="1.5"/>
+    <!-- Inner Ellipse 2 -->
+    <ellipse cx="30" cy="30" rx="20" ry="28" fill="none" stroke="#D97757" stroke-opacity="0.5" stroke-width="1"/>
+    <!-- Center Dot -->
+    <circle cx="30" cy="30" r="3" fill="#D97757"/>
+  </g>
+  
+  <!-- Logo Text -->
+  <text x="85" y="52" font-family="'Source Serif 4', 'Georgia', serif" font-style="italic" font-size="38" font-weight="600" fill="#1A1A17">Meridian</text>
+</svg>
