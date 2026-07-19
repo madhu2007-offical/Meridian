@@ -42,12 +42,22 @@ const seedUsers = async () => {
   }
 };
 
-connectDB().then(() => {
-  seedUsers();
-});
-
 const app = express();
 app.set('trust proxy', 1);
+
+let isInitialized = false;
+app.use(async (req, res, next) => {
+  if (!isInitialized) {
+    try {
+      await connectDB();
+      await seedUsers();
+      isInitialized = true;
+    } catch (err) {
+      console.error('Database connection/seeding error:', err.message);
+    }
+  }
+  next();
+});
 
 app.use(helmet());
 app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173', credentials: true }));
