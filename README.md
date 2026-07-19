@@ -8,7 +8,7 @@ Compose once. Publish everywhere.
 
 <img src="./assets/tech-stack.svg" alt="Tech Stack" width="600" style="margin: 1.5rem 0;" />
 
-[Features](#features) · [Tech Stack](#tech-stack) · [Getting Started](#getting-started) · [Project Structure](#project-structure) · [API Reference](#api-reference) · [Roadmap](#roadmap)
+
 
 </div>
 
