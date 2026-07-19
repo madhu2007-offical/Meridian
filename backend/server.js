@@ -10,7 +10,41 @@ const postRoutes = require('./routes/postRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const platformRoutes = require('./routes/platformRoutes');
 
-connectDB();
+const User = require('./models/User');
+
+const seedUsers = async () => {
+  try {
+    const adminExists = await User.findOne({ email: 'admin@meridian.com' });
+    if (!adminExists) {
+      await User.create({
+        name: 'System Administrator',
+        email: 'admin@meridian.com',
+        password: 'password123',
+        role: 'admin',
+        isVerified: true,
+      });
+      console.log('Seeded default admin account: admin@meridian.com / password123');
+    }
+
+    const customerExists = await User.findOne({ email: 'customer@meridian.com' });
+    if (!customerExists) {
+      await User.create({
+        name: 'Default Customer',
+        email: 'customer@meridian.com',
+        password: 'password123',
+        role: 'customer',
+        isVerified: true,
+      });
+      console.log('Seeded default customer account: customer@meridian.com / password123');
+    }
+  } catch (err) {
+    console.error('Error seeding users:', err.message);
+  }
+};
+
+connectDB().then(() => {
+  seedUsers();
+});
 
 const app = express();
 
@@ -34,7 +68,11 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  startScheduler();
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    startScheduler();
+  });
+}
+
+module.exports = app;
