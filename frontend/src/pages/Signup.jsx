@@ -38,7 +38,11 @@ const Signup = () => {
       showToast('Account created! Check your email for OTP.', 'success');
       navigate('/verify-otp', { state: { email: form.email } });
     } catch (err) {
-      showToast(err.response?.data?.message || 'Signup failed', 'error');
+      const isConnectionError = !err.response || err.response.status === 502 || err.response.status === 504 || err.response.status === 500;
+      const errorMsg = isConnectionError
+        ? 'Signup failed. The server could not connect to the database. Please ensure you have configured MONGO_URI in Vercel.'
+        : (err.response?.data?.message || 'Signup failed');
+      showToast(errorMsg, 'error');
     } finally {
       setLoading(false);
     }

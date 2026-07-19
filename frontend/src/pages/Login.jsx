@@ -29,7 +29,13 @@ const Login = () => {
     } catch (err) {
       setShake(true);
       setTimeout(() => setShake(false), 500);
-      showToast(err.response?.data?.message || 'Login failed', 'error');
+      
+      const isConnectionError = !err.response || err.response.status === 502 || err.response.status === 504 || err.response.status === 500;
+      const errorMsg = isConnectionError
+        ? 'Login failed. The server could not connect to the database. Please ensure you have configured MONGO_URI in Vercel.'
+        : (err.response?.data?.message || 'Login failed');
+        
+      showToast(errorMsg, 'error');
     } finally {
       setLoading(false);
     }
