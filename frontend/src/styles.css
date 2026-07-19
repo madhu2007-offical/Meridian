@@ -19,6 +19,22 @@
   --transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1); /* calm, ease-out transition */
 }
 
+[data-theme="dark"] {
+  --bg: #1F1E1C; /* warm dark brown-black */
+  --surface: #272522; /* slightly lighter warm dark brown for cards, headers */
+  --surface-hover: #312E2A; /* hover state for dark surfaces */
+  --border: #3D3934; /* thin, low-contrast dark border */
+  --text: #FAF9F6; /* warm off-white text */
+  --text-muted: #8A8F87; /* soft slate/sage for muted text remains identical */
+  --primary: #D97757; /* terracotta clay remains the same */
+  --primary-hover: #E2886A; /* slightly brighter terracotta for better contrast on dark */
+  --danger: #E86B6B; /* slightly brighter red for dark mode contrast */
+  --success: #7EA686; /* slightly brighter sage green for dark mode contrast */
+  --warning: #D8A257; /* slightly brighter gold/amber */
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* deeper shadow for dark mode */
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
